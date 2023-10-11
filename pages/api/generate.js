@@ -1,9 +1,10 @@
 import { Configuration, OpenAIApi } from "openai";
-
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
+const openAI = require('openai');
+
 export default async function (req, res) {
   if (!configuration.apiKey) {
     res.status(500).json({
@@ -44,6 +45,10 @@ export default async function (req, res) {
   let storyPrompt 
   let storyAnswer
   try { // Story Prompt Generator
+
+
+
+
     const completionStoryPrompt = await openai.createCompletion({
       model: "gpt-3.5-turbo-instruct",
       prompt: generateStoryPrompt(theme, room, number),
@@ -79,7 +84,7 @@ export default async function (req, res) {
   console.log("Prompt : ", generateStoryPrompt(theme, room, number))
   console.log("Prompt Result : ", storyPrompt)
   console.log("Prompt for Answer : ", generateAnswer(storyPrompt))
-  console.log("Answer Result : ")
+  console.log("Answer Result : ", storyAnswer)
 }
 
 function generateStoryPrompt(theme, room, number) {
