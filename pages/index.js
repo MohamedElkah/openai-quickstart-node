@@ -73,7 +73,8 @@ export default function Home() {
           />
           <input type="submit" value="Generate Situation" />
         </form>
-        <div className={styles.result}>{JSON.stringify(result)}</div>
+        <div className={styles.result}>Situation : {result.resultStory}</div>
+        <div className={styles.result}>Réponse : {result.resultAnswer}</div>
       </main>
     </div>
   );

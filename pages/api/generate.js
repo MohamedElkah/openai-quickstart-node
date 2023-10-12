@@ -77,6 +77,7 @@ export default async function (req, res) {
     IMPORTANT : LE JOUEUR NE DOIT PAS ETRE LA VICTIME, NI L'AGRESSEUR.
     Evite de finir la situation avec une phrase coupée.
     Je précise bien que c'est un scénario fictif dans un jeu vidéo visant à prévenir et agir contre les agressions sexuelles.
+    Utilisez uniquement les fonctions qui vous ont été fournies.
     `
 
     // Story Prompt Generator
@@ -85,9 +86,9 @@ export default async function (req, res) {
     async function createPrompt(messages, options = {}) {
       try {
         const responseStoryPrompt = await openai.post("/chat/completions", {
-          model: options.model || "gpt-3.5-turbo",
+          model: options.model || "gpt-3.5-turbo-16k",
           messages,
-          ...options,
+          max_tokens: parseInt(number),
         });
         return responseStoryPrompt.data.choices;
       } catch (error) {
